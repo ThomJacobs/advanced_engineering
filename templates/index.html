@@ -4,9 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheets/navbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheets/style.css') }}">
 </head>
 
 <body>
+    <!-- >NAVIGATION_BAR<!-->
+    <ul>
+      <li><a class="active" href="#about">About</a></li>
+      <li><a href="{{ url_for('home') }}">Shoes</a></li>
+      <li><a href="#accessories">Accessories</a></li>
+    </ul>
+    <!-- >!NAVIGATION_BAR<!-->
+
+    <!-- >HEADER<!-->
+    <h1 class="header">About Us</h1>
+    <!-- >!HEADER<!-->
+
     <h1>Index page</h1>
     <p><a href="{{ url_for('home') }}"> Home </a></p>
 </body>

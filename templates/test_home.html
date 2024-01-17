@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheets/navbar.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='stylesheets/style.css') }}">
+</head>
+<body>
+    <!-- >NAVIGATION_BAR<!-->
+    <ul>
+      <li><a class="active" href="#about">About</a></li>
+      <li><a href="{{ url_for('home') }}">Shoes</a></li>
+      <li><a href="#accessories">Accessories</a></li>
+    </ul>
+    <!-- >!NAVIGATION_BAR<!-->
+
+    <!-- >HEADER<!-->
+    <h1 class="header">About Us</h1>
+    <!-- >!HEADER<!-->
+
+    <ul id="dataList">
+        <!-- Data will be added dynamically here -->
+    </ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch data from the server
+            fetch("/get_home_data")
+                .then(response => response.json())
+                .then(data => {
+                    // Update the content dynamically
+                    const dataList = document.getElementById("dataList");
+                    data.forEach(row => {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = `${row[0]} ${row[1]}`;
+                        dataList.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        });
+    </script>
+
+</body>
+</html>
